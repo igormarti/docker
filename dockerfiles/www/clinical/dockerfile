@@ -71,6 +71,7 @@ RUN npm install npm@6.13.0 -g
 RUN npm install -g yarn
 RUN command -v node
 RUN command -v npm
+RUN npm install -g create-react-app@3.4.1
 
 # Other
 RUN mkdir ~/.ssh
@@ -83,7 +84,10 @@ RUN node -v
 RUN npm -v
 RUN yarn --version
 
-WORKDIR www/clinical
-RUN chmod -R 777 .
-COPY package.json yarn.* ./ 
+WORKDIR /usr/app
+
+EXPOSE 3333
+
+COPY . .
 RUN yarn
+CMD ["yarn","start"]
