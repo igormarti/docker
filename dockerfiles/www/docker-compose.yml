@@ -2,7 +2,7 @@ version: "2"
 services:
   clinical:
     build:
-        context: ./clinical
+        context: ./clinicloud
         dockerfile: dockerfile
     command: yarn start
     image: soft82/cliserver
@@ -10,20 +10,20 @@ services:
       - "3333:3333"
     restart: always
     volumes:
-      - "./clinical:/usr/app"
+      - "./clinicloud:/usr/app"
     depends_on:
       - pg-database
   clinical-web:
     build:
-        context: ./clinical-web
+        context: ./clinicloud-web
         dockerfile: dockerfile
     # command: npm start
-    image: soft82/cliclient
+    image: soft82/clinicloud-web
     ports:
       - "3000:3000"
     restart: always
     volumes:
-      - "./clinical-web:/usr/src/app"
+      - "./clinicloud-web:/usr/src/app"
     depends_on:
       - pg-database
     stdin_open: true  
